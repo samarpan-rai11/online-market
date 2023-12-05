@@ -15,7 +15,7 @@ def index(request):
 
 
 def contact(request):
-    return render(request, 'core/contact.html')
+    return render(request, "core/contact.html")
 
 def signup(request):
     if request.method == 'POST':
