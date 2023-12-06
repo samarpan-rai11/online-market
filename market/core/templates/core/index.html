@@ -7,16 +7,16 @@
         <h2 class="mb-12 text-2xl text-center">Newest Items</h2>
 
         <div class="grid grid-cols-3 gap-6">
-            {% for item in items %}
+            {% for item2 in new_items %}
             <div>
-                <a href="{% url 'item:product-detail' item.id %}">
+                <a href="{% url 'item:product-detail' item2.id %}">
                     <div>
-                        <img src="{{ item.image.url }}" alt="image" class="rounded-t-xl">
+                        <img src="{{ item2.image.url }}" alt="image" class="rounded-t-xl">
                     </div>
 
                     <div class="p-6 bg-white rounded-b-xl">
-                        <h2 class="text-2xl">{{ item.name }}</h2>
-                        <p class="text-gray-400">Price: ${{ item.price }}</p>
+                        <h2 class="text-2xl">{{ item2.name }}</h2>
+                        <p class="text-gray-400">Price: ${{ item2.price }}</p>
                     </div>
                 </a>
             </div>
@@ -28,12 +28,12 @@
         <h2 class="mb-12 text-2xl text-center">Categories</h2>
 
         <div class="grid grid-cols-3 gap-3">
-            {% for category in categories %}
+            {% for banana in category %}
             <div>
                 <a href="#">
                     <div class="p-6 bg-white rounded-xl">
-                        <h2 class="text-2xl">{{ category.name }}</h2>
-                        <p class="text-gray-400">{{ category.items.count }} items</p>
+                        <h2 class="text-2xl">{{ banana.name }}</h2>
+                        <p class="text-gray-400">{{ banana.items.count }} items</p>
                     </div>
                 </a>
             </div>

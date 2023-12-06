@@ -9,8 +9,8 @@ def index(request):
     categories = Category.objects.all()  #this is an object
 
     return render(request, 'core/index.html', {
-        'categories' : categories,
-        'items' : items, 
+        'category' : categories,
+        'new_items' : items, 
     })
 
 
