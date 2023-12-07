@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Items{% endblock %}
+
+{% block content %}
+    <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
+        <div class="col-span-1">
+            <form action="{% url 'item:items-search' %}" method="get">
+                <input type="text" name="Query" class="w-full py-4 px-6 border rounded-xl" value="{{ s_query }}" placeholder="Find products..."> 
+                <!-- the name="Query" above is from query in views.py item functions 1st line where get function must be "Query"  -->
+                <button class="mt-2 py-2 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
+            </form>
+
+            <hr class="my-6">
+
+            <p class="font-semibold">Categories</p>
+            <ul>
+                {% for category in category %}
+                    <li class="py-2 px-2 rounded-xl{% if category.id == category_id %} bg-gray-200{% endif %}">
+                        <a href="{% url 'item:items-search' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <hr class="my-6">
+
+            <p class="font-semibold">Clear filters</p>
+
+            <ul>
+                <li><a href="{% url 'item:items-search' %}" class="mt-2 py-2 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">Clear</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col-span-3">
+            <div class="grid grid-cols-3 gap-6">
+                {% for sitem in items_search %}
+                <div>
+                    <a href="{% url 'item:product-detail' sitem.id %}">
+                        <div>
+                            <img src="{{ sitem.image.url }}" alt="image" class="rounded-t-xl">
+                        </div>
+    
+                        <div class="p-6 bg-white rounded-b-xl">
+                            <h2 class="text-2xl">{{ sitem.name }}</h2>
+                            <p class="text-gray-400">Price: ${{ sitem.price }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
